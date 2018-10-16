@@ -1,11 +1,14 @@
 import React from "react";
-import { RouteComponentProps } from "react-router-dom";
+import Helmet from "react-helmet";
+import { Link, RouteComponentProps } from "react-router-dom";
 import bgImage from "../../images/bg.png";
 import styled from "../../typed-components";
- const Container = styled.div`
+
+const Container = styled.div`
   height: 100vh;
 `;
- const Header = styled.header`
+
+const Header = styled.header`
   height: 70%;
   background: linear-gradient(rgba(0, 153, 196, 0.5), rgba(0, 153, 196, 0.4)),
     url(${bgImage});
@@ -13,7 +16,8 @@ import styled from "../../typed-components";
   align-items: center;
   justify-content: center;
 `;
- const Logo = styled.div`
+
+const Logo = styled.div`
   width: 110px;
   height: 110px;
   background-color: white;
@@ -25,50 +29,70 @@ import styled from "../../typed-components";
   font-weight: 500;
   font-size: 25px;
 `;
- const Title = styled.h1``;
- const Footer = styled.div``;
- const Subtitle = styled.h2`
+
+const Title = styled.h1``;
+
+const Footer = styled.div``;
+
+const Subtitle = styled.h2`
   font-size: 30px;
 `;
- const FakeInput = styled.div`
+
+const FakeInput = styled.div`
   margin: 50px 0px;
   font-size: 25px;
   font-weight: 300;
 `;
- const PhoneLogin = styled.div`
+
+const PhoneLogin = styled.div`
   padding: 20px;
+  cursor: pointer;
 `;
- const Grey = styled.span`
+
+const Grey = styled.span`
   color: ${props => props.theme.greyColor};
   margin-left: 10px;
 `;
- const SocialLogin = styled.div`
+
+const SocialLogin = styled.div`
   border-top: 1px solid ${props => props.theme.greyColor};
   padding: 30px 20px;
 `;
- const SocialLink = styled.span`
+
+const SocialLink = styled.span`
   color: ${props => props.theme.blueColor};
   font-size: 20px;
+  cursor: pointer;
 `;
- interface IProps extends RouteComponentProps<any> {}
- const OutHomePresenter: React.SFC<IProps> = () => (
+
+interface IProps extends RouteComponentProps<any> {}
+
+const OutHomePresenter: React.SFC<IProps> = () => (
   <Container>
+    <Helmet>
+      <title>Login | Nuber</title>
+    </Helmet>
     <Header>
       <Logo>
         <Title>Nuber</Title>
       </Logo>
     </Header>
     <Footer>
-      <PhoneLogin>
-        <Subtitle>Get moving with Nuber</Subtitle>
-        <FakeInput>
-          🇰🇷 +82 <Grey>Enter your mobile number</Grey>
-        </FakeInput>
-      </PhoneLogin>
-      <SocialLogin>
-        <SocialLink>Or connect with social</SocialLink>
-      </SocialLogin>
+      <Link to={"/phone-login"}>
+        <PhoneLogin>
+          <Subtitle>Get moving with Nuber</Subtitle>
+          <FakeInput>
+            🇰🇷 +82 <Grey>Enter your mobile number</Grey>
+          </FakeInput>
+        </PhoneLogin>
+      </Link>
+      <Link to={"/social-login"}>
+        <SocialLogin>
+          <SocialLink>Or connect with social</SocialLink>
+        </SocialLogin>
+      </Link>
     </Footer>
   </Container>
 );
- export default OutHomePresenter;
+
+export default OutHomePresenter;
