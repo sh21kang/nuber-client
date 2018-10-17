@@ -28,6 +28,5 @@
     "webpack",
     "jest",
     "src/setupTests.ts",
-    "src/global-styles.ts"
   ]
 }

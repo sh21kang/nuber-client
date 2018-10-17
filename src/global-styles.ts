@@ -1,6 +1,8 @@
 import reset from "styled-reset";
+//import  { injectGlobal } from "styled-components";
 import { injectGlobal } from "./typed-components";
- // tslint:disable-next-line
+
+// tslint:disable-next-line
 injectGlobal`
   @import url('https://fonts.googleapis.com/css?family=Maven+Pro');
   ${reset};
