@@ -68,8 +68,8 @@ class HomeContainer extends React.Component<IProps, IState> {
     lat: 0,
     lng: 0,
     price: undefined,
-    toAddress:
-      "Athens International Airport (ATH), Attiki Odos, Spata Artemida 190 04, Greece",
+    toAddress: "Seoul, Guilo-gu, Guro-dong, Guro-Gu",
+      // "Athens International Airport (ATH), Attiki Odos, Spata Artemida 190 04, Greece",
     toLat: 0,
     toLng: 0
   };
@@ -159,6 +159,7 @@ class HomeContainer extends React.Component<IProps, IState> {
                               onInputChange={this.onInputChange}
                               price={price}
                               data={data}
+                              isDriving={isDriving}
                               onAddressSubmit={this.onAddressSubmit}
                               requestRideFn={requestRideFn}
                               nearbyRide={nearbyRide}
@@ -208,7 +209,7 @@ class HomeContainer extends React.Component<IProps, IState> {
     const maps = google.maps;
     const mapNode = ReactDOM.findDOMNode(this.mapRef.current);
     if (!mapNode) {
-      this.loadMap(lat, lng);
+      // this.loadMap(lat, lng);
       return;
     }
     const mapConfig: google.maps.MapOptions = {
@@ -316,10 +317,11 @@ class HomeContainer extends React.Component<IProps, IState> {
     const directionsService: google.maps.DirectionsService = new google.maps.DirectionsService();
     const to = new google.maps.LatLng(toLat, toLng);
     const from = new google.maps.LatLng(lat, lng);
+    console.log(toLat, toLng,lat,lng,google.maps.TravelMode.DRIVING);
     const directionsOptions: google.maps.DirectionsRequest = {
       destination: to,
       origin: from,
-      travelMode: google.maps.TravelMode.DRIVING
+      travelMode: google.maps.TravelMode.TRANSIT
     };
     directionsService.route(directionsOptions, this.handleRouteRequest);
   };
@@ -327,6 +329,7 @@ class HomeContainer extends React.Component<IProps, IState> {
     result: google.maps.DirectionsResult,
     status: google.maps.DirectionsStatus
   ) => {
+    console.log(status, result);
     if (status === google.maps.DirectionsStatus.OK) {
       const { routes } = result;
       const {
@@ -411,13 +414,16 @@ class HomeContainer extends React.Component<IProps, IState> {
   };
   public handleProfileQuery = (data: userProfile) => {
     const { GetMyProfile } = data;
+
     if (GetMyProfile.user) {
-      // const {
-      //   user: { isDriving }
-      // } = GetMyProfile;
-      // this.setState({
-      //   isDriving
-      // });
+      const {
+        user: { isDriving }
+      } = GetMyProfile;
+      if(isDriving!==this.state.isDriving){
+        this.setState({
+          isDriving
+        });
+      }
     }
   };
   public handleRideAcceptance = (data: acceptRide) => {

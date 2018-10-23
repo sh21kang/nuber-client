@@ -61,6 +61,7 @@ interface IProps {
   requestRideFn?: MutationFn;
   acceptRideFn?: MutationFn;
   nearbyRide?: getRides;
+  isDriving: boolean;
 }
 
 const HomePresenter: React.SFC<IProps> = ({
@@ -75,7 +76,8 @@ const HomePresenter: React.SFC<IProps> = ({
   data: { GetMyProfile: { user = null } = {} } = {},
   nearbyRide: { GetNearbyRide: { ride = null } = {} } = {},
   requestRideFn,
-  acceptRideFn
+  acceptRideFn,
+  isDriving
 }) => (
   <Container>
     <Helmet>
@@ -110,7 +112,7 @@ const HomePresenter: React.SFC<IProps> = ({
             />
           </React.Fragment>
         )}
-      {price && (
+      {price && !isDriving &&(
         <RequestButton
           onClick={requestRideFn}
           disabled={toAddress === ""}

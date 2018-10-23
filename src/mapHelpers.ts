@@ -22,7 +22,7 @@ export const geoCode = async (address: string) => {
 };
 
 export const reverseGeoCode = async (lat: number, lng: number) => {
-  console.log(lat, lng);
+  // console.log(lat, lng);
   const URL = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${MAPS_KEY}`;
   const { data } = await axios(URL);
   // console.log(status);
