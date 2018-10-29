@@ -6,13 +6,18 @@ export const USER_PROFILE = gql`
       ok
       error
       user {
+        id
         profilePhoto
+        firstName
+        lastName
+        email
         fullName
         isDriving
       }
     }
   }
 `;
+
 export const GET_PLACES = gql`
   query getPlaces {
     GetMyPlaces {

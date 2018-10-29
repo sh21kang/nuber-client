@@ -127,5 +127,4 @@ const RidePresenter: React.SFC<IProps> = ({
       )}
   </Container>
 );
-
 export default RidePresenter;

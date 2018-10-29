@@ -146,8 +146,8 @@ class HomeContainer extends React.Component<IProps, IState> {
                       }
                       return (
                         <AcceptRide
-                          mutation={ACCEPT_RIDE}
-                          onCompleted={this.handleRideAcceptance}
+                        mutation={ACCEPT_RIDE}
+                        onCompleted={this.handleRideAcceptance}
                         >
                           {acceptRideFn => (
                             <HomePresenter
@@ -429,7 +429,9 @@ class HomeContainer extends React.Component<IProps, IState> {
   public handleRideAcceptance = (data: acceptRide) => {
     const { history } = this.props;
     const { UpdateRideStatus } = data;
-    if (UpdateRideStatus.ok) {
+     console.log('accept',UpdateRideStatus);
+     
+     if (UpdateRideStatus.ok) {
       history.push(`/ride/${UpdateRideStatus.rideId}`);
     }
   };

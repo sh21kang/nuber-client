@@ -21,8 +21,9 @@ interface IProps extends RouteComponentProps<any> {}
 class RideContainer extends React.Component<IProps> {
   constructor(props: IProps) {
     super(props);
+    console.log('we here');
     if (!props.match.params.rideId) {
-      props.history.push("/");
+        props.history.push("/");
     }
   }
   public render() {
@@ -39,7 +40,9 @@ class RideContainer extends React.Component<IProps> {
               const subscribeOptions: SubscribeToMoreOptions = {
                 document: RIDE_SUBSCRIPTION,
                 updateQuery: (prev, { subscriptionData }) => {
+                  console.log(subscriptionData);
                   if (!subscriptionData.data) {
+                    // console.log('nope');
                     return prev;
                   }
                   const {

@@ -39,20 +39,40 @@ export const RIDE_SUBSCRIPTION = gql`
       price
       distance
       duration
-      driver {
-        id
-        fullName
-        profilePhoto
-      }
-      passenger {
-        id
-        fullName
-        profilePhoto
-      }
+      # driver {
+         # id
+         # fullName
+         # profilePhoto
+      # }
+      # passenger {
+      #   id
+      #   fullName
+      #   profilePhoto
+      # }
       chatId
     }
   }
 `;
+
+// id: Int!
+// status: String!
+// pickUpAddress: String!
+// pickUpLat: Float!
+// pickUpLng: Float!
+// dropOffAddress: String!
+// dropOffLat: Float!
+// dropOffLng: Float!
+// price: Float!
+// distance: String!
+// duration: String!
+// driverId: Int
+// driver: User!
+// passengerId: Int!
+// passenger: User!
+// chat: Chat
+// chatId: Int
+// createdAt: String!
+// updatedAt: String
 
 export const UPDATE_RIDE_STATUS = gql`
   mutation updateRide($rideId: Int!, $status: StatusOptions!) {
